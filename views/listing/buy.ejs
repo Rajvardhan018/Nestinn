@@ -1,0 +1,51 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h2 class="text-center mb-4">BUY OR RENT PROPERTY</h2>
+
+               
+
+                <!-- Form Start -->
+                <form method="post" action="/listings/<%= listing._id %>/buy" novalidate class="needs-validation">
+                    
+                    <!-- Hidden User ID -->
+                    <input name="Transaction[user]" type="hidden" value="<%= currUser._id %>">
+
+                    <!-- Property Listing ID (Hidden) -->
+                    <input name="Transaction[listing]" value="<%= listing._id %>" type="hidden">
+                    
+                    <!-- Transaction Type -->
+                    <div class="mb-3">
+                        <label for="transactionType" class="form-label">Transaction Type</label>
+                        <select name="Transaction[transactionType]" class="form-control" required>
+                            <option value="buy">Buy</option>
+                            <option value="rent">Rent</option>
+                        </select>
+                        <div class="invalid-feedback">Please select a transaction type.</div>
+                    </div>
+
+                    <!-- Amount -->
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount</label>
+                        <input name="Transaction[amount]" value="<%= listing.price %>" placeholder="Enter the transaction amount" type="number" class="form-control" required>
+                        <div class="invalid-feedback">Please enter a valid amount.</div>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Additional Notes</label>
+                        <textarea name="Transaction[notes]" placeholder="Enter any additional notes" class="form-control"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-dark btn-lg mb-3">SUBMIT</button>
+                    </div>
+                </form>
+                <!-- Form End -->
+            </div>
+        </div>
+    </div>
+</body>
